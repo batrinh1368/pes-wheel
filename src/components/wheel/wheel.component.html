@@ -1,0 +1,15 @@
+<div id="boundary">
+  <div id="wheel" [style.transform]="'rotate(' + rotateDeg + 'deg)'">
+    <svg id="pie-club" width="500" height="500"></svg>
+    <svg
+      id="pie-nation"
+      width="300"
+      height="300"
+      (mousedown)="onMouseDown()"
+      (mouseup)="onMouseUp()"
+    ></svg>
+  </div>
+  <div id="pointer"></div>
+  <div id="power" [style.height]="power + '%'"></div>
+  <div id="timeleft" [style.width]="timeleft + '%'"></div>
+</div>

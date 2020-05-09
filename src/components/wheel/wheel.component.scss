@@ -1,0 +1,72 @@
+$boundary-size: 550px;
+$spin-size: 90px;
+$w1-size: 250px;
+$w2-size: $boundary-size - 60;
+
+#boundary {
+  width: $boundary-size;
+  height: $boundary-size;
+  background: #ffe69f;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #wheel {
+    background: #ecff9e;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #pointer {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border: 40px solid transparent;
+    border-right-color: red;
+    position: absolute;
+    right: 5px;
+  }
+
+  #power {
+    display: block;
+    background: linear-gradient(0deg, #35000000, #350000, #350000, #350000);
+    width: 5px;
+    top: 0;
+    right: 0;
+    position: absolute;
+  }
+
+  #timeleft {
+    display: block;
+    background: purple;
+    height: 5px;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+  }
+
+  mat-progress-bar {
+    position: absolute;
+    bottom: 0;
+  }
+}
+:host::ng-deep {
+  svg {
+    border-radius: 50%;
+    position: absolute;
+    background: black;
+
+    .pie-chart-value {
+      fill: none;
+      stroke-width: 198;
+    }
+
+    &#pie-nation {
+      stroke-width: 150;
+    }
+  }
+}
