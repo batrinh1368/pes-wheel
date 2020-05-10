@@ -1,5 +1,4 @@
-import { Color } from './../../app/models/color';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Team } from 'src/app/models';
 
 @Component({
@@ -10,6 +9,7 @@ import { Team } from 'src/app/models';
 export class WheelComponent implements OnInit {
   @Input() nations: Team[];
   @Input() clubs: Team[];
+  @Output() onSelected: EventEmitter<number> = new EventEmitter();
 
   rotateDeg = 0;
   power = 0;
@@ -75,6 +75,14 @@ export class WheelComponent implements OnInit {
     this.runInterval = null;
     this.rotateInterval = null;
     this.isRunning = false;
+
+    this.findSelection();
+  }
+
+  private findSelection(){
+    console.log('findSelection', this.nations.length, this.rotateDeg);
+    const teamIndex = Math.floor(this.rotateDeg / (360 / this.nations.length));
+    this.onSelected.next(teamIndex);
   }
 
   private drawPie(teams: Team[], radius: number, svgId = 'pie-nation') {

@@ -7,7 +7,7 @@
       <app-choose-team [teams]="clubs" [label]="'Clubs'"></app-choose-team>
     </div>
     <div class="col-md-8">
-      <app-wheel [nations]="nations" [clubs]="clubs"></app-wheel>
+      <app-wheel [nations]="nations" [clubs]="clubs" (onSelected)="onSelected($event)"></app-wheel>
     </div>
   </div>
 </div>

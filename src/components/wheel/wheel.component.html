@@ -1,6 +1,6 @@
 <div id="boundary">
   <div id="wheel" [style.transform]="'rotate(' + rotateDeg + 'deg)'">
-    <svg id="pie-club" width="500" height="500"></svg>
+    <svg id="pie-club" width="500" height="500" [style.background]="'rgba(255, 0, 0, ' + (power / 100) + ')'"></svg>
     <svg
       id="pie-nation"
       width="300"

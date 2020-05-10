@@ -24,6 +24,11 @@ export class AppComponent {
     this.getTeamListOption(this.teamService.defaultNations, this.teamService.defaultClubs);
   }
 
+  onSelected(selectedIndex) {
+    console.log('The selected nation is', this.nations[selectedIndex]);
+    console.log('The selected club is', this.clubs[selectedIndex]);
+  }
+
   private getTeamListOption(nations: Team[], clubs: Team[]) {
     const totalTeam = Math.min(nations.length, clubs.length);
     const dataNations: Team[] = [];
