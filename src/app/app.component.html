@@ -1,13 +1,42 @@
-<div class="container" style="margin-top: 40px;">
+<div id="main" class="container" style="margin-top: 40px;">
   <div class="row">
-    <div class="col-md-2">
-      <app-choose-team [teams]="nations" [label]="'Nations'"></app-choose-team>
-    </div>
-    <div class="col-md-2">
-      <app-choose-team [teams]="clubs" [label]="'Clubs'"></app-choose-team>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-6">
+          <app-choose-team
+            [teams]="nations"
+            [label]="'Nations'"
+          ></app-choose-team>
+        </div>
+        <div class="col-6">
+          <app-choose-team [teams]="clubs" [label]="'Clubs'"></app-choose-team>
+        </div>
+      </div>
+
+      <h2>Kết quả quay</h2>
+      <div id="result">
+        <div class="row text-center">
+          <div class="col-6">
+            <div>
+              <img class="flg" [src]="nation?.flag" />
+            </div>
+            {{ nation?.name }}
+          </div>
+          <div class="col-6">
+            <div>
+              <img class="flg" [src]="club?.flag" />
+            </div>
+            {{ club?.name }}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-md-8">
-      <app-wheel [nations]="nations" [clubs]="clubs" (onSelected)="onSelected($event)"></app-wheel>
+      <app-wheel
+        [nations]="nations"
+        [clubs]="clubs"
+        (onSelected)="onSelected($event)"
+      ></app-wheel>
     </div>
   </div>
 </div>

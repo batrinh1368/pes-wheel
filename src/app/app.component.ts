@@ -19,14 +19,20 @@ export interface Tile {
 export class AppComponent {
   nations: ITeam[];
   clubs: ITeam[];
+  nation?: ITeam;
+  club?: ITeam;
 
   constructor(private teamService: TeamService) {
     this.getTeamListOption(this.teamService.defaultNations, this.teamService.defaultClubs);
   }
 
   onSelected(selectedIndex) {
-    console.log('The selected nation is', this.nations[selectedIndex]);
-    console.log('The selected club is', this.clubs[selectedIndex]);
+    this.nation = this.nations[selectedIndex];
+    this.club = this.clubs[selectedIndex];
+    this.nation.flag = this.teamService.getNationIcon(this.nation.code);
+    this.club.flag = this.teamService.getClubIcon(this.club.code);
+    console.log('The selected nation is', this.nation);
+    console.log('The selected club is', this.club);
   }
 
   private getTeamListOption(nations: Team[], clubs: Team[]) {
@@ -38,23 +44,17 @@ export class AppComponent {
       dataNations.push({
         name: nations[i].name,
         color: color,
+        code: nations[i].code,
       });
       dataClubs.push({
         name: clubs[i].name,
         color: color,
+        code: clubs[i].code,
       });
     }
 
     this.nations = dataNations;
     this.clubs = dataClubs;
-  }
-
-  dropTeam(event: CdkDragDrop<string[]>, type) {
-    if (this.isNationType('nation')) {
-      moveItemInArray(this.nations, event.previousIndex, event.currentIndex);
-    } else {
-      moveItemInArray(this.clubs, event.previousIndex, event.currentIndex);
-    }
   }
 
   private isNationType(type: string) {

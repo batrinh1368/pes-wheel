@@ -31,7 +31,10 @@ export class WheelComponent implements OnInit {
       this.power = 0;
       this.powerInterval = setInterval(() => {
         this.power++;
-        this.rotateDeg -= this.power / 5;
+        // reverser the wheel
+        this.rotateDeg -= this.power / 10;
+
+        // go back to increase the power effect
         if (this.power >= 100) {
           this.power = 40;
         }
@@ -111,7 +114,6 @@ export class WheelComponent implements OnInit {
 
       // Set Stroke color
       circle.style.stroke = team.color;
-      console.log(team, circle);
 
       // Append circle to svg.
       svg.appendChild(circle);
