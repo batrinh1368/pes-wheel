@@ -1,6 +1,15 @@
 <div id="main" class="container" style="margin-top: 40px;">
   <div class="row">
     <div class="col-md-4">
+      <div class="space-beetween align-items-center">
+        <button mat-raised-button color="primary" (click)="openTeamSelection()">
+          Choose team
+        </button>
+        <mat-checkbox color="primary" (click)="setFavorite()"
+          >Favorite!</mat-checkbox
+        >
+      </div>
+
       <div class="row">
         <div class="col-6">
           <app-choose-team
@@ -13,28 +22,42 @@
         </div>
       </div>
 
-      <h2>Kết quả quay</h2>
-      <div id="result">
-        <div class="row text-center">
-          <div class="col-6">
-            <div>
-              <img class="flg" [src]="nation?.flag" />
+      <ng-container *ngIf="showResult">
+        <h2>Kết quả quay</h2>
+        <div id="result">
+          <ng-container *ngIf="isFavorite">
+            <div id="result-favorite" class="text-center">
+              <div>
+                <img class="flg" [src]="nation?.flag" />
+              </div>
+              {{ nation?.name }}
             </div>
-            {{ nation?.name }}
-          </div>
-          <div class="col-6">
-            <div>
-              <img class="flg" [src]="club?.flag" />
+          </ng-container>
+          <ng-container *ngIf="!isFavorite">
+            <div class="row text-center">
+              <div class="col-6">
+                <div>
+                  <img class="flg" [src]="nation?.flag" />
+                </div>
+                {{ nation?.name }}
+              </div>
+              <div class="col-6">
+                <div>
+                  <img class="flg" [src]="club?.flag" />
+                </div>
+                {{ club?.name }}
+              </div>
             </div>
-            {{ club?.name }}
-          </div>
+          </ng-container>
         </div>
-      </div>
+      </ng-container>
     </div>
     <div class="col-md-8">
       <app-wheel
+        #wheel
         [nations]="nations"
         [clubs]="clubs"
+        (onStartRun)="showResult = false"
         (onSelected)="onSelected($event)"
       ></app-wheel>
     </div>

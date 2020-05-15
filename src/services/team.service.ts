@@ -8,15 +8,22 @@ import { ITeam } from 'src/app/models';
 export class TeamService {
   nations: ITeam[];
   clubs: ITeam[];
-
+  DEFAULT_FLAG = '/assets/favorite.png';
   constructor() {}
 
-  public getNationIcon(code) {
-    return `https://www.countryflags.io/${code}/flat/64.png`;
+  public getNationIcon(code): string {
+    if (code) {
+      return `https://www.countryflags.io/${code}/flat/64.png`;
+    }
+
+    return this.DEFAULT_FLAG;
   }
 
-  public getClubIcon(code) {
-    return `https://logo.clearbit.com/${code}`;
+  public getClubIcon(code): string {
+    if (code) {
+      return `https://logo.clearbit.com/${code}`;
+    }
+    return this.DEFAULT_FLAG;
   }
 
   public get defaultNations(): ITeam[] {
@@ -25,31 +32,31 @@ export class TeamService {
         name: 'Pháp',
         code: 'FR',
         flag: '',
-        color: '',
+        color: 'red',
       },
       {
         name: 'Bỉ',
         code: 'BE',
         flag: '',
-        color: '',
+        color: 'rebeccapurple',
       },
       {
         name: 'Đức',
         code: 'DE',
         flag: '',
-        color: '',
+        color: 'green',
       },
       {
         name: 'Anh',
         code: 'GB',
         flag: '',
-        color: '',
+        color: 'pink',
       },
       {
         name: 'Brazil',
         code: 'BR',
         flag: '',
-        color: '',
+        color: 'blue',
       },
     ];
   }
@@ -60,31 +67,31 @@ export class TeamService {
         name: 'Manchester United',
         code: 'manutd.com',
         flag: '',
-        color: '',
+        color: 'red',
       },
       {
         name: 'Liverpool',
         code: 'liverpoolfc.com',
         flag: '',
-        color: '',
+        color: 'rebeccapurple',
       },
       {
         name: 'Barcelona',
         code: 'barcelonastream.com',
         flag: '',
-        color: '',
+        color: 'green',
       },
       {
         name: 'Real Madrid',
         code: 'realmadrid.com',
         flag: '',
-        color: '',
+        color: 'pink',
       },
       {
         name: 'Bayern Munich',
         code: 'bayernmunchenrss.de',
         flag: '',
-        color: '',
+        color: 'blue',
       },
     ];
   }

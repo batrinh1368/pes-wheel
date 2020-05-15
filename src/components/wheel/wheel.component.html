@@ -1,10 +1,15 @@
 <div id="boundary">
-  <div id="wheel" [style.transform]="'rotate(' + rotateDeg + 'deg)'">
-    <svg id="pie-club" width="500" height="500" [style.background]="'rgba(255, 0, 0, ' + (power / 100) + ')'"></svg>
+  <div id="wheel">
+    <svg id="pie-club" width="500" height="500" [style.background]="'rgba(255, 0, 0, ' + (power / 100) + ')'"
+    [style.transform]="'rotate(' + rotateDegClub + 'deg)'"
+    [style.transition]="clubTransitionCSS"
+
+    ></svg>
     <svg
       id="pie-nation"
       width="300"
       height="300"
+      [style.transform]="'rotate(' + rotateDeg + 'deg)'"
       (mousedown)="onMouseDown()"
       (mouseup)="onMouseUp()"
     ></svg>

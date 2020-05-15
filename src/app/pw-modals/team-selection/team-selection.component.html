@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Team selection</h1>
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Nation</h3>
+      <mat-selection-list #nationSelect>
+        <mat-list-option [value]="nation" [selected]="checkNationSelected(nation.code)" *ngFor="let nation of allNations">
+          {{ nation.name }}
+        </mat-list-option>
+      </mat-selection-list>
+
+    </div>
+    <div class="col-sm-6">
+      <h3>Club</h3>
+      <mat-selection-list #clubSelect>
+        <mat-list-option [value]="club" [selected]="checkClubSelected(club.code)" *ngFor="let club of allClubs">
+          {{ club.name }}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button
+  [mat-dialog-close]="{nations: nationSelect.selectedOptions.selected, clubs: clubSelect.selectedOptions.selected}"
+  cdkFocusInitial
+  color="primary"
+  >
+    Select
+  </button>
+</mat-dialog-actions>
