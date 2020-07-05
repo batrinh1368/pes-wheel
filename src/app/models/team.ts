@@ -1,4 +1,5 @@
 export interface ITeam {
+  index?: number;
   name: string;
   code?: string;
   flag?: string;
@@ -8,6 +9,7 @@ export interface ITeam {
 }
 
 export class Team implements ITeam {
+  index?: number;
   name: string;
   code?: string;
   flag?: string;

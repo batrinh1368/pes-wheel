@@ -1,4 +1,4 @@
 <h3>{{label}}</h3>
 <div cdkDropList class="team-list" (cdkDropListDropped)="dropTeam($event)">
-  <div class="team-box" *ngFor="let team of teams" cdkDrag><div class="team-color" [style.background]="team.color"></div>{{team.name}}</div>
+  <div class="team-box" *ngFor="let team of teams" cdkDrag><div class="team-color" [style.background]="team.color"></div>{{team.index + 1}}. {{team.name}}</div>
 </div>

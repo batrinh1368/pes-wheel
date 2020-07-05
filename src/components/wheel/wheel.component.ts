@@ -18,6 +18,7 @@ export class WheelComponent implements OnInit {
   power = 0;
   timeleft = 100;
   clubTransitionCSS;
+  private svgNS = 'http://www.w3.org/2000/svg';
   private powerInterval;
   private runInterval;
   private rotateInterval;
@@ -135,8 +136,10 @@ export class WheelComponent implements OnInit {
 
   private findSelection() {
     console.log('findSelection', this.nations.length, this.rotateDeg);
-    const nationIndex = Math.floor(this.rotateDeg / this.unitRotate) % this.nations.length;
-    const clubIndex = Math.floor(this.rotateDegClub / this.unitRotate) % this.clubs.length;
+    const nationIndex =
+      Math.floor(this.rotateDeg / this.unitRotate) % this.nations.length;
+    const clubIndex =
+      Math.floor(this.rotateDegClub / this.unitRotate) % this.clubs.length;
     this.onSelected.next({
       nationIndex: nationIndex,
       clubIndex: clubIndex,
@@ -152,30 +155,49 @@ export class WheelComponent implements OnInit {
 
     // Loop trough data to create pie
     teams.forEach((team) => {
-      // Create circle
-      var circle = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'circle'
-      );
-      const centerPosition = (radius / 2).toString();
-      // Set attributes (self explanatory)
-      circle.setAttribute('class', 'pie-chart-value');
-      circle.setAttribute('cx', centerPosition);
-      circle.setAttribute('cy', centerPosition);
-      circle.setAttribute('r', (radius / 2).toString());
-
-      // Set dash on circle
-      circle.style.strokeDasharray = spaceLeft + ' ' + circleLength;
-
-      // Set Stroke color
-      circle.style.stroke = team.color;
-
-      // Append circle to svg.
-      svg.appendChild(circle);
-
+      this.drawCircle(svg, team.color, radius, spaceLeft, circleLength);
+      this.addText(svg, team.index + 1, radius, spaceLeft, circleLength);
       // Subtract current value from spaceLeft
       spaceLeft -= (1 / totalValue) * circleLength;
     });
+  }
+
+  private drawCircle(
+    svg,
+    color: string,
+    radius: number,
+    spaceLeft: number,
+    circleLength: number
+  ) {
+    // Create circle
+    const circle: any = document.createElementNS(this.svgNS, 'circle');
+    const centerPosition = (radius / 2).toString();
+    // Set attributes (self explanatory)
+    circle.setAttribute('class', 'pie-chart-value');
+    circle.setAttribute('cx', centerPosition);
+    circle.setAttribute('cy', centerPosition);
+    circle.setAttribute('r', (radius / 2).toString());
+
+    // Set dash on circle
+    circle.style.strokeDasharray = spaceLeft + ' ' + circleLength;
+
+    // Set Stroke color
+    circle.style.stroke = color;
+
+    // Append circle to svg.
+    svg.appendChild(circle);
+  }
+
+  private addText(svg, label: any, radius: any, spaceLeft, circleLength) {
+    console.log('addText', label, radius, spaceLeft, circleLength)
+    var newText = document.createElementNS(this.svgNS, 'text');
+    newText.setAttributeNS(null, 'x', radius);
+    newText.setAttributeNS(null, 'y', radius);
+    newText.setAttributeNS(null, 'font-size', '20');
+
+    var textNode = document.createTextNode(label);
+    newText.appendChild(textNode);
+    svg.appendChild(newText);
   }
 
   private get unitRotate(): number {

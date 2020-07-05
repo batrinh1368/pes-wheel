@@ -32,6 +32,7 @@ export class AppComponent {
   showResult = false;
 
   favoriteTeam: ITeam = {
+    index: 0,
     name: 'Favorite team',
     color: Color.FAVORITE_COLOR,
     favorite: true,
@@ -64,11 +65,13 @@ export class AppComponent {
     for (let i = 0; i < totalTeam; i++) {
       const color = Color.POPULAR_LIST[i % Color.POPULAR_LIST.length];
       dataNations.push({
+        index: i,
         name: nations[i].name,
         color: color,
         code: nations[i].code,
       });
       dataClubs.push({
+        index: i,
         name: clubs[i].name,
         color: color,
         code: clubs[i].code,
